@@ -98,10 +98,3 @@ Fork this repository and submit a pull request.
 
 ## License
 This project is licensed under the MIT License. See the `LICENSE` file for details.
-
----
-
-## Acknowledgments
-Special thanks to the following:
-- TensorFlow for providing robust tools for building deep learning models.
-- Open source datasets for plant disease images.
