@@ -29,7 +29,7 @@ def preprocess_image(image):
     return image_processed
 
 
-def load_trained_model(path='./models/model.h5'):
+def load_trained_model(path='./path/to/model'):
     xception_model = tf.keras.models.Sequential([
         tf.keras.applications.xception.Xception(include_top=False, weights='imagenet', input_shape=(512, 512, 3)),
         tf.keras.layers.GlobalAveragePooling2D(),

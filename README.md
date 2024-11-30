@@ -40,15 +40,17 @@ pip install tensorflow pillow numpy
 
 ## Project Files
 - **`main.py`**: Main script to run the prediction pipeline.
-- **`models/model.h5`**: Pre-trained model weights (not included; refer to the "Model Weights" section).
+- **`models/model.h5`**: Pre-trained model weights (download link provided below).
 - **Sample Images**: Use your own plant leaf images for testing.
 
 ---
 
 ## Usage
 
-1. **Load the Model**:
-   Place the pre-trained model weights (`model.h5`) in the `./models/` directory.
+1. **Download Model Weights**:
+   Download the pre-trained model weights from the link below and place them in the `./models/` directory:
+
+   [Download Model Weights](https://drive.google.com/file/d/1bTie0IcrtEp_SB489E0uUmGwpjGkdCI7/view?usp=sharing)
 
 2. **Run the Script**:
    Execute the script with:
@@ -81,11 +83,6 @@ Please enter the path to your plant leaf image (e.g., './leaf_image.jpg'): ./sam
 Prediction Results:
 The plant has Rust with a prediction score of 85%.
 ```
-
----
-
-## Model Weights
-The project uses pre-trained model weights. Due to file size constraints, the weights are not included. Download the weights from [your repository/hosting link] and place them in the `./models/` directory.
 
 ---
 
