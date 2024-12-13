@@ -5,18 +5,16 @@ import io
 
 def predict_disease(model, image):
     predictions = model.predict(image / 255.0)
-    return predictions, np.argmax(predictions, axis=1)
+    return np.argmax(predictions, axis=1)
 
 disease_statuses = ["Healthy", "Multiple Diseases", "Rust", "Scab"]
 
-def generate_results(predictions, predictions_arr):
+def generate_results(predictions_arr):
     class_index = int(predictions_arr[0])
     status = disease_statuses[class_index]
-    prediction_score = int(predictions[0][class_index].round(2) * 100)
 
     result = {
-        "status": f"has {status}",
-        "prediction": f"{prediction_score}%"
+        "status": f"has {status}" if status != "Healthy" else f"is {status}",
     }
     return result
 
@@ -29,7 +27,7 @@ def preprocess_image(image):
     return image_processed
 
 
-def load_trained_model(path='./path/to/model'):
+def load_trained_model(path='./model/model.h5'):
     xception_model = tf.keras.models.Sequential([
         tf.keras.applications.xception.Xception(include_top=False, weights='imagenet', input_shape=(512, 512, 3)),
         tf.keras.layers.GlobalAveragePooling2D(),
@@ -53,7 +51,7 @@ def load_trained_model(path='./path/to/model'):
 
 def main():
     model = load_trained_model()
-    image_path = input("Please enter the path to your plant leaf image (e.g., './leaf_image.jpg'): ").strip()
+    image_path = input("Please enter the path to your mulberry plant leaf image (e.g., './leaf_image.jpg'): ").strip()
 
     try:
         with open(image_path, 'rb') as img_file:
@@ -66,11 +64,11 @@ def main():
         return
 
     image_array = preprocess_image(image)
-    predictions, predictions_arr = predict_disease(model, image_array)
-    result = generate_results(predictions, predictions_arr)
+    predictions_arr = predict_disease(model, image_array)
+    result = generate_results(predictions_arr)
 
     print(f"\nPrediction Results:")
-    print(f"The plant {result['status']} with a prediction score of {result['prediction']}.")
+    print(f"The plant {result['status']}.")
 
 if __name__ == "__main__":
     main()
